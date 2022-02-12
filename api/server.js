@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import ImportData from "./DataImport.js";
 import connectDatabase from "./config/MongoDb.js";
+import productRoute from "./Routes/ProductRoutes.js";
 
 dotenv.config();
 connectDatabase();
@@ -13,6 +14,7 @@ app.get("/", (req, res) => {
   });
 // API
 app.use("/api/import", ImportData);  
+app.use("/api/products", productRoute);
 
 
 const PORT = process.env.PORT || 1000;
