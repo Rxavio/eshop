@@ -26,14 +26,14 @@ res.json(products);
 //     });
 
 
-// app.get("/api/products/:id",(req, res) => {
-//     const id = Number(req.params.id)
-//     const product = products.find(product => product._id === id)
-//         if (!product) {
-//         return res.status(404).send('Product not found')
-//     }
-//     res.json(product)
-// })    
+app.get("/api/products/:id",(req, res) => {
+    const id = Number(req.params.id)
+    const product = products.find(product => product._id === id)
+        if (!product) {
+        return res.status(404).send('Product not found')
+    }
+    res.json(product)
+})    
 
 //all users
 app.get("/api/users", (req, res) => {
