@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import ImportData from "./DataImport.js";
 import connectDatabase from "./config/MongoDb.js";
 import productRoute from "./Routes/ProductRoutes.js";
+import { errorHandler, notFound } from "./Middleware/Errors.js";
 
 dotenv.config();
 connectDatabase();
@@ -15,6 +16,11 @@ app.get("/", (req, res) => {
 // API
 app.use("/api/import", ImportData);  
 app.use("/api/products", productRoute);
+
+
+// ERROR HANDLER
+app.use(notFound);
+app.use(errorHandler);
 
 
 const PORT = process.env.PORT || 1000;
