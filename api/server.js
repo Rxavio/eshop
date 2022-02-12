@@ -2,8 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import products from "./data/products.js"
 import users from "./data/users.js"
+import connectDatabase from "./config/MongoDb.js";
 
 dotenv.config();
+connectDatabase();
 const app = express();
 app.use(express.json());
 
