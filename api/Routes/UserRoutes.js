@@ -63,4 +63,14 @@ userRouter.post(
     })
   );
 
+  // PROFILE
+userRouter.get(
+    "/profile",
+    asyncHandler(async (req, res) => {
+        res.send("USER PROFILE");
+      
+    })
+  );
+
+
 export default userRouter;
