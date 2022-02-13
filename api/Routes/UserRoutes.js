@@ -2,6 +2,7 @@ import express from "express";
 import asyncHandler from "express-async-handler";
 import User from "./../Models/UserModel.js";
 import generateToken from "../utils/generateToken.js";
+import protect from "../Middleware/AuthMiddleware.js";
 
 const userRouter = express.Router();
 
@@ -66,6 +67,7 @@ userRouter.post(
   // PROFILE
 userRouter.get(
     "/profile",
+    protect,
     asyncHandler(async (req, res) => {
         res.send("USER PROFILE");
       
