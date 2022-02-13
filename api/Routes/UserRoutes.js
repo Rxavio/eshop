@@ -3,8 +3,20 @@ import asyncHandler from "express-async-handler";
 import User from "./../Models/UserModel.js";
 import generateToken from "../utils/generateToken.js";
 import protect from "../Middleware/AuthMiddleware.js";
+import isAdmin from "../Middleware/adminToken.js";
 
 const userRouter = express.Router();
+
+// GET ALL PRODUCT
+userRouter.get(
+  "/allusers",
+  protect,
+  isAdmin,
+  asyncHandler(async (req, res) => {
+    const allusers = await User.find({ })
+    res.json(allusers);
+  })
+);
 
 // LOGIN
 userRouter.post(
