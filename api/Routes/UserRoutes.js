@@ -7,7 +7,7 @@ import isAdmin from "../Middleware/adminToken.js";
 
 const userRouter = express.Router();
 
-// GET ALL PRODUCT
+// GET ALL USERS
 userRouter.get(
   "/allusers",
   protect,
