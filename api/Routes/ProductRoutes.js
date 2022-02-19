@@ -48,4 +48,35 @@ productRoute.delete(
   })
 );
 
+// CREATE PRODUCT
+productRoute.post(
+  "/",
+  protect,
+  isAdmin,
+  asyncHandler(async (req, res) => {
+    const { name, price, description, image, countInStock } = req.body;
+    const productExist = await Product.findOne({ name });
+    if (productExist) {
+      res.status(400);
+      throw new Error("Product name already exist");
+    } else {
+      const product = new Product({
+        name,
+        price,
+        description,
+        image,
+        countInStock,
+        user: req.user._id,
+      });
+      if (product) {
+        const createdproduct = await product.save();
+        res.status(201).json(createdproduct);
+      } else {
+        res.status(400);
+        throw new Error("Invalid product data");
+      }
+    }
+  })
+);
+
 export default productRoute;
