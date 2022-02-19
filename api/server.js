@@ -6,6 +6,7 @@ import productRoute from "./Routes/ProductRoutes.js";
 import { errorHandler, notFound } from "./Middleware/Errors.js";
 import userRouter from "./Routes/UserRoutes.js";
 import orderRouter from "./Routes/orderRoutes.js";
+import products from "./data/products.js";
 
 dotenv.config();
 connectDatabase();
@@ -14,6 +15,10 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
     res.send("welcome to the e-shop api...");
+ });
+
+ app.get("/api/products", (req, res) => {
+    res.json(products);
  });
 
 // API
